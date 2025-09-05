@@ -3,4 +3,5 @@
 *:before,
 *:after {
   box-sizing: border-box;
+  background-color: aqua;
 }
