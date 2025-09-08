@@ -2,6 +2,108 @@
 *,
 *:before,
 *:after {
-  box-sizing: border-box;
+  box-sizing: border-box
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+  width: 99%;
+  align-items: center;
+  justify-content: center;
+}
+
+
+header{
+  /* background-color: aquamarine; */
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+header .siteName{
+  font-size: 2rem;
+  
+}
+header a{
+  display: flex;
+  width: 100%;
+  text-decoration: none;
+}
+nav{
+  width: 100%;
   background-color: aqua;
+
+}
+nav ul{
+  padding-left: 0;
+  margin: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 0.5rem;
+}
+nav ul li{
+  text-decoration: none;
+  display: flex;
+  color: rgba(11, 58, 70, 0.89);
+}
+
+h1{
+  color: aqua;
+}
+main{
+  display: flex;
+  flex-direction: column;
+}
+
+.hero{
+  max-width: 100%;
+  background-image: url(../images/vehicles/delorean.jpg);
+  background-position: center;
+  background-repeat: no-repeat; 
+  background-size: 100%
+}
+
+#info{
+  background-color: rgba(255, 255, 243, 0.801);
+  width: 40%;
+}
+
+#info img{
+  display: flex;
+  width: 100%;
+  padding: 5%;
+}
+
+.reviews ul li{
+  margin: 1rem;
+}
+
+.upgrades{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr 1fr;
+}
+.upgrades>h2{
+  display: grid;
+  grid-column: 1/ -1;
+}
+
+.upgrade-img{
+  background-color: blue;
+  border-radius: 10px;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem;
+}
+
+.upgrades p{
+  text-align: center;
 }

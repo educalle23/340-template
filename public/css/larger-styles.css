@@ -1,0 +1,46 @@
+@media screen and (min-width:768px) {
+    body{
+        position: relative;
+        background-image: url(../images/site/checkerboard.jpg);
+    }
+
+    #wrapper{
+        width: 80%;
+        background-color: aliceblue;
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center;
+        align-items: center; */
+        border: 2px solid blue;
+        border-radius: 10px;
+        padding: 1.5rem;
+    }
+
+    main{
+        display: grid;
+        grid-template-areas:
+        "title title" 
+        "hero hero"
+        "review upgrade";
+    }
+
+    h1{
+        grid-area: title;
+    }
+
+    .hero{
+        grid-area: hero;
+    }
+    #info{
+        background-color: rgba(255, 255, 243, 0.801);
+        width: 20%; 
+    }
+
+    .upgrades{
+        grid-area: upgrade;
+    }
+
+    .reviews{
+        grid-area: review;
+    }
+}
