@@ -11,6 +11,16 @@ where inv_year < '2000'
 order by inv_year DESC
 
 
+insert into account (account_firstname, account_lastname, account_email, account_password)
+values ('Tony', 'Stark', 'tony@starkent.com', 'Iam1ronM@n');
+
+update account 
+set account_type = 'Admin'
+where account_id = 1;
+
+delete from account 
+where account_id = 1;
+
 update inventory
 set inv_description = replace(inv_description, 'small interiors', 'a huge interior')
 where inv_id = '10'; 
