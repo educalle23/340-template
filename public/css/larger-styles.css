@@ -43,4 +43,9 @@
     .reviews{
         grid-area: review;
     }
+
+    #inv-display{
+        display: flex;
+        flex-direction: row;
+    }
 }

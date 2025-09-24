@@ -62,6 +62,9 @@ h1{
 main{
   display: flex;
   flex-direction: column;
+  width: 80%;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero{
@@ -109,4 +112,35 @@ main{
 
 .upgrades p{
   text-align: center;
+}
+
+#inv-display {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  list-style-type: none;
+  padding-left: 0;
+
+
+}
+
+#inv-display ul{
+  text-decoration: none;
+  padding-left: 0;
+}
+
+#inv-display li{
+  border: 2px solid rgb(126, 126, 126);
+  border-radius: 10px;
+  padding: 1rem;
+  justify-content: center;
+  text-align: center;
+}
+
+#wrapper{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  align-items: center;
+  justify-content: center;
 }
