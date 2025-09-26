@@ -59,6 +59,38 @@ Util.buildClassificationGrid = async function(data){
   return grid
 }
 
+Util.buildDetailById = async function (data) {
+  let div = ""
+  
+  if(data && data.inv_id) {  
+    
+    div = '<div id="inv-detail">'
+
+    div += '<h1>' + data.inv_year + ' ' + data.inv_make + ' ' + data.inv_model + '</h1>'
+    
+    div += '<img src="' + data.inv_image + '" alt="' + data.inv_make + ' ' + data.inv_model + '">'
+    
+    div += '<p>Price: ' + formatPrice(data.inv_price) + '</p>'
+    div += '<p>Mileage: ' + formatMiles(data.inv_miles) + '</p>'
+    div += '<p>Description: ' + data.inv_description + '</p>'
+    
+    div += '</div>'
+  }
+  
+  return div
+}
+
+function formatPrice(price) {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  }).format(price)
+}
+
+function formatMiles(miles) {
+  return new Intl.NumberFormat('en-US').format(miles)
+}
+
 
 /* ****************************************
  * Middleware For Handling Errors
