@@ -144,3 +144,187 @@ main{
   align-items: center;
   justify-content: center;
 }
+
+#messages{
+  color: rgb(222, 143, 143);
+  list-style: none;
+  font-weight: 500;
+  background-color: rgb(109, 24, 29);
+}
+
+.login-form,
+.register-form {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.login-form label,
+.register-form label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.login-form input,
+.register-form input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.login-form input:focus,
+.register-form input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.login-form button,
+.register-form button {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.login-form button:hover,
+.register-form button:hover {
+  background-color: #0056b3;
+}
+
+.login-form + p,
+.register-form + p {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.login-form + p a,
+.register-form + p a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.login-form + p a:hover,
+.register-form + p a:hover {
+  text-decoration: underline;
+}
+
+.password-note {
+  display: block;
+  font-size: 0.75rem;
+  color: #666;
+  margin-top: 0.25rem;
+  font-style: italic;
+}
+
+input:invalid {
+  border-color: #dc3545;
+}
+
+input:valid {
+  border-color: #28a745;
+}
+
+.notice{
+  color: red;
+}
+
+.inventory-form,
+.classification-form {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.inventory-form label,
+.classification-form label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.inventory-form input,
+.inventory-form select,
+.inventory-form textarea,
+.classification-form input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 0.5rem;
+}
+
+.inventory-form input:focus,
+.inventory-form select:focus,
+.inventory-form textarea:focus,
+.classification-form input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.inventory-form button,
+.classification-form button {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.inventory-form button:hover,
+.classification-form button:hover {
+  background-color: #0056b3;
+}
+
+.notice {
+  color: #dc3545;
+  background: #f8d7da;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  list-style: none;
+  font-weight: 500;
+}
+
+.inventory-form small,
+.classification-form small {
+  display: block;
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+
+.inventory-form textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* Optional: sticky select styling */
+#classificationList {
+  margin-bottom: 1rem;
+}

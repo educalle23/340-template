@@ -1,0 +1,15 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } else { %>
+  <h1>Inventory Management</h1>
+<% } %>
+
+<!-- Flash message display -->
+<% if (message) { %>
+  <div class="flash-message"><%= message %></div>
+<% } %>
+
+<ul>
+  <li><a href="/inv/add-classification">Add New Classification</a></li>
+  <li><a href="/inv/add-inventory">Add New Inventory Item</a></li>
+</ul>
