@@ -369,3 +369,120 @@ input:valid {
 #inventoryDisplay td {
   vertical-align: middle;
 }
+
+/* Account Update Forms */
+.update-form,
+.password-form {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.update-form fieldset,
+.password-form fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.update-form legend,
+.password-form legend {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #007bff;
+  width: 100%;
+}
+
+.update-form label,
+.password-form label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.update-form input,
+.password-form input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 0.5rem;
+}
+
+.update-form input:focus,
+.password-form input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.update-form input[type="submit"],
+.password-form input[type="submit"] {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.update-form input[type="submit"]:hover,
+.password-form input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Password form specific styling */
+.password-form {
+  margin-top: 2rem;
+}
+
+.password-form legend {
+  border-bottom-color: #dc3545;
+  color: #dc3545;
+}
+
+.password-form input[type="submit"] {
+  background-color: #dc3545;
+}
+
+.password-form input[type="submit"]:hover {
+  background-color: #c82333;
+}
+
+/* Password requirements notice */
+.password-form .notice,
+.password-form p.notice {
+  color: #666;
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 4px;
+  padding: 0.75rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+/* Validation styling */
+.update-form input:invalid:not(:placeholder-shown),
+.password-form input:invalid:not(:placeholder-shown) {
+  border-color: #dc3545;
+}
+
+.update-form input:valid:not(:placeholder-shown),
+.password-form input:valid:not(:placeholder-shown) {
+  border-color: #28a745;
+}
+
