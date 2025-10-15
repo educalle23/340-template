@@ -1,4 +1,6 @@
 const invModel = require("../models/inventory-model")
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 const Util = {}
 
 /* ************************
@@ -117,5 +119,57 @@ function formatMiles(miles) {
  * General Error Handling
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
+
+
+/* ****************************************
+* Middleware to check token validity
+**************************************** */
+Util.checkJWTToken = (req, res, next) => {
+ if (req.cookies.jwt) {
+  jwt.verify(
+   req.cookies.jwt,
+   process.env.ACCESS_TOKEN_SECRET,
+   function (err, accountData) {
+    if (err) {
+     req.flash("Please log in")
+     res.clearCookie("jwt")
+     return res.redirect("/account/login")
+    }
+    res.locals.accountData = accountData
+    res.locals.loggedin = 1
+    next()
+   })
+ } else {
+  res.locals.loggedin = 0
+  next()
+ }
+}
+
+/* ****************************************
+ * Middleware to check account type for authorization
+ * Only Employee and Admin can access inventory management
+ **************************************** */
+Util.checkAccountType = (req, res, next) => {
+  console.log("=== DEBUG checkAccountType ===")
+  console.log("loggedin:", res.locals.loggedin)
+  console.log("accountData:", res.locals.accountData)
+
+  if (res.locals.loggedin && res.locals.accountData) {
+    const accountType = res.locals.accountData.account_type
+    console.log("account_type:", accountType)
+
+    
+    // Allow access for Employee or Admin
+    if (accountType === "Client" || accountType === "Admin") {
+      next()
+    } else {
+      req.flash("notice", "You do not have permission to access this resource.")
+      return res.redirect("/account/login")
+    }
+  } else {
+    req.flash("notice", "Please log in to access this resource.")
+    return res.redirect("/account/login")
+  }
+}
 
 module.exports = Util

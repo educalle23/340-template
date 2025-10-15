@@ -1,0 +1,32 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+
+<%- messages() %>
+
+<% if (locals.loggedin && locals.accountData) { %>
+  <!-- Greeting for all logged-in users -->
+  <h2>Welcome <%= accountData.account_firstname %></h2>
+  
+  <!-- Link to update account - visible for ALL account types -->
+  <p>
+    <a href="/account/update/<%= accountData.account_id %>" title="Click to update account information">
+      Update Account Information
+    </a>
+  </p>
+
+  <!-- Inventory Management section - ONLY for Employee or Admin -->
+  <% if (accountData.account_type === "Employee" || accountData.account_type === "Admin") { %>
+    <h3>Inventory Management</h3>
+    <p>
+      <a href="/inv/" title="Click to access inventory management">
+        Manage Inventory
+      </a>
+    </p>
+  <% } %>
+
+<% } else { %>
+  <p>You must be logged in to view this page.</p>
+<% } %>
