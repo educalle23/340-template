@@ -1,4 +1,5 @@
 const invModel = require("../models/inventory-model")
+const reviewModel = require("../models/review-model")
 const utilities = require("../utilities/")
 
 const invCont = {}
@@ -25,28 +26,48 @@ invCont.buildByClassificationId = async function (req, res, next) {
 }
 
 
-
-/* ***************************
- *  Build detail by inventory id 
- * ************************** */
-
 invCont.buildByInventoryId = async function (req, res, next) {
-  const inventory_id = req.params.inventoryId
-  const data = await invModel.getVehicleById(inventory_id)
-  const detail = await utilities.buildDetailById(data)
-  let nav = await utilities.getNav()
-
-  if (data) {
+  try {
+    const inventory_id = req.params.inventoryId
+    const data = await invModel.getVehicleById(inventory_id)
+    
+    if (!data) {
+      const err = new Error('Vehicle not found')
+      err.status = 404
+      return next(err)
+    }
+    
+    // Get reviews for this vehicle
+    const reviews = await reviewModel.getReviewsByInventoryId(inventory_id)
+    
+    // Get review statistics
+    const reviewStats = await reviewModel.getReviewStats(inventory_id)
+    
+    // Check if current user already reviewed (if logged in)
+    let hasReviewed = false
+    if (res.locals.accountData?.account_id) {
+      hasReviewed = await reviewModel.hasUserReviewed(inventory_id, res.locals.accountData.account_id)
+    }
+    
+    // Build the vehicle detail HTML
+    const detail = await utilities.buildDetailById(data)
+    let nav = await utilities.getNav()
     const vehicleTitle = `${data.inv_make} ${data.inv_model}` 
+    
     res.render("./inventory/detail", {
       title: vehicleTitle,
       nav,
-      detail,  
+      detail,
+      vehicle: data,  // ← Necesario para las reviews (vehicle.inv_id)
+      reviews: reviews || [],
+      reviewStats: reviewStats || { total_reviews: 0, average_rating: 0 },
+      hasReviewed: hasReviewed || false,
+      errors: null,
     })
-  } else {
-    const err = new Error('Vehicle not found')
-    err.status = 404
-    next(err)
+    
+  } catch (error) {
+    console.error("Error in buildByInventoryId:", error)
+    next(error)
   }
 }
 

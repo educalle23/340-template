@@ -1,2 +1,93 @@
-<title><%= title %></title>
-<%- detail %>
+<%- messages() %>
+<%- messages() %>
+
+<!-- Vehicle Details Section -->
+<section class="vehicle-detail">
+  <%- detail %>
+</section>
+
+<!-- Reviews Section -->
+<section class="reviews-section">
+  <div class="reviews-header">
+    <h2>Customer Reviews</h2>
+    
+    <% if (reviewStats && reviewStats.total_reviews > 0) { %>
+      <div class="review-stats">
+        <span class="average-rating">
+          ⭐ <%= reviewStats.average_rating %> / 5.0
+        </span>
+        <span class="total-reviews">
+          (<%= reviewStats.total_reviews %> <%= reviewStats.total_reviews === 1 ? 'review' : 'reviews' %>)
+        </span>
+      </div>
+    <% } %>
+  </div>
+
+  <!-- Add Review Button -->
+  <% if (locals.loggedin) { %>
+    <% if (!hasReviewed) { %>
+      <a href="/review/add" class="btn-add-review">
+        Write a Review
+      </a>
+    <% } else { %>
+      <p class="already-reviewed">✓ You have already reviewed this vehicle</p>
+    <% } %>
+  <% } else { %>
+    <p class="login-prompt">
+      <a href="/account/login">Log in</a> to write a review
+    </p>
+  <% } %>
+
+  <!-- Reviews List -->
+  <% if (reviews && reviews.length > 0) { %>
+    <div class="reviews-list">
+      <% reviews.forEach(review => { %>
+        <div class="review-item">
+          <div class="review-header">
+            <div class="reviewer-info">
+              <strong class="reviewer-name">
+                <%= review.account_firstname %> <%= review.account_lastname.charAt(0) %>.
+              </strong>
+              <span class="review-date">
+                <%= new Date(review.review_date).toLocaleDateString('en-US', { 
+                  year: 'numeric', 
+                  month: 'long', 
+                  day: 'numeric' 
+                }) %>
+              </span>
+            </div>
+            <div class="review-rating">
+              <% for(let i = 1; i <= 5; i++) { %>
+                <% if(i <= review.rating) { %>
+                  <span class="star filled">★</span>
+                <% } else { %>
+                  <span class="star empty">☆</span>
+                <% } %>
+              <% } %>
+              <span class="rating-number">(<%= review.rating %>/5)</span>
+            </div>
+          </div>
+          
+          <div class="review-text">
+            <p><%= review.review_text %></p>
+          </div>
+
+          <!-- Delete button (only for review owner or admin) -->
+          <% if (locals.loggedin && (locals.accountData.account_id === review.account_id || locals.accountData.account_type === 'Admin')) { %>
+            <div class="review-actions">
+              <a href="/review/delete/<%= review.review_id %>" 
+                 class="btn-delete-review"
+                 onclick="return confirm('Are you sure you want to delete this review?')">
+                Delete Review
+              </a>
+            </div>
+          <% } %>
+        </div>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <div class="no-reviews">
+      <p>No reviews yet. Be the first to review this vehicle!</p>
+    </div>
+  <% } %>
+</section>

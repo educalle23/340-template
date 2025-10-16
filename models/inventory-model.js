@@ -135,4 +135,25 @@ async function deleteInventoryItem(inv_id) {
   }
 }
 
-module.exports = {getClassifications, getInventoryByClassificationId, getVehicleById, insertClassification, insertInventory, updateInventory, deleteInventoryItem}
+async function getInventory() {
+  try {
+    const sql = `
+      SELECT 
+        inv_id,
+        inv_make,
+        inv_model,
+        inv_year,
+        inv_thumbnail,
+        inv_price
+      FROM public.inventory
+      ORDER BY inv_make, inv_model
+    `
+    const result = await pool.query(sql)
+    return result.rows
+  } catch (error) {
+    console.error("getInventory error: " + error)
+    return []
+  }
+}
+
+module.exports = {getClassifications, getInventoryByClassificationId, getVehicleById, insertClassification, insertInventory, updateInventory, deleteInventoryItem, getInventory}

@@ -22,10 +22,8 @@ async function registerAccount({ account_firstname, account_lastname, account_em
 
 async function checkExistingEmail(account_email){
   try {
-    console.log("Buscando email:", account_email) // <-- Agrega este log
     const sql = "SELECT * FROM account WHERE LOWER(account_email) = LOWER($1)"
     const result = await pool.query(sql, [account_email])
-    console.log("Resultado:", result.rows) // <-- Agrega este log
     return result.rowCount
   } catch (error) {
     console.error(error)
